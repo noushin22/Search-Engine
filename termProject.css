@@ -1,0 +1,9 @@
+body{
+    background-color: rgb(149, 216, 216);
+}
+.searchBox{
+    margin-top: 300px;
+    width: 800px;
+    text-align: center;
+    padding: 20px;
+}
