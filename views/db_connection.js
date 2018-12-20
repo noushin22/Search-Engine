@@ -19,7 +19,7 @@ var connection = mysql.createConnection({
   //Return home page
 // app.get('/',function(req,res){
 //   res.render('termProject.html');
-//   });
+// });
   //Extract the keyword.
   //Return the result depending on the keyword.
  // app.get('/search',function(req,res){
@@ -40,10 +40,21 @@ var connection = mysql.createConnection({
     for(i=0;i<rows.length;i++)
     {
     data.push(rows[i].first_name);
+    console.log(rows[i]);
     }
     res.end(JSON.stringify(data));
     });
     });
+
+    app.get('/search',function(req,res){
+      connection.query('SELECT url from searchOption where keyword like "%'+req.query.key+'%"',
+      function(err, rows) {
+      if (err) throw err;
+      console.log(rows);
+      });
+      });
+  
+
 
 var server=app.listen(8080,function(){
 console.log("We have started our server on port 8080");
