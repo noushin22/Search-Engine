@@ -18,14 +18,22 @@
 
     <script type="text/javascript">
 
-$(document).ready(function(){
-$('input.typeahead').typeahead({
-name: 'typeahead',
-remote: 'http://localhost:8080/search?key=%QUERY',
-limit: 10
+ $(document).ready(function(){
+// $('input.typeahead').typeahead({
+// name: 'typeahead',
+// remote: 'http://localhost:8080/search?key=%QUERY',
+// limit: 10
+// });
+// });
+
+$("#searchkey").submit(function (event) {
+  $.get('/search', $("#searchkey").serialize(), function (data) {
+ 	console.log(data) //data is the response from the backend
+  });
+  event.preventDefault();
 });
-});
-    
+
+}); 
     // $(document).ready(function(){
 
     //     $("#search2").hide();
@@ -57,8 +65,8 @@ limit: 10
 
         <div class="container" id="search1">
                 <div class="row col-xs-12" style="margin-top: 150px; margin-left: 350px;">
-                    <form method="GET" action="/search">
-                    <input class= "typehead tt-query" type="text" name="typeahead" placeholder="Search" size="50"/>
+                    <form id="searchkey">
+                    <input class= "typehead tt-query" type="text" name="search" placeholder="Search" size="50"/>
                     <input type="submit" value="Search" id="submitBtn1"/> 
                     </form>
                 </div>
